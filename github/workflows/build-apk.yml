@@ -1,7 +1,7 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch: # This allows you to trigger the build manually with a button click
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,6 +10,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          # This tells GitHub to pull the submodules from the original LiveKit repo,
+          # instead of looking for them in your personal account.
+          submodules: 'recursive'
+          repository: 'livekit/client-sdk-android'
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
